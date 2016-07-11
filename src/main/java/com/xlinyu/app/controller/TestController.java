@@ -1,5 +1,8 @@
 package com.xlinyu.app.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,15 +18,26 @@ public class TestController {
 	
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	@ResponseBody
-	@ApiOperation(value = "根据用户名获取用户对象", httpMethod = "GET", response = User.class, notes = "根据用户名获取用户对象")
-	public User getUser(){
+	@ApiOperation(value = "获取用户列表", httpMethod = "GET", response = List.class, notes = "获取用户列表")
+	public List<User> getUser(){
 		
-		User user = new User();
+		List<User> users = new ArrayList<User>();
+		User u1 = new User();
+		u1.setId(1);
+		u1.setUsername("zhangsan");
+		u1.setPassword("abc123");
 		
-		user.setId(1);
-		user.setUsername("zhangsan");
-		user.setPassword("abc123");
-		return user;
+		users.add(u1);
+		
+		u1 = new User();
+		u1.setId(2);
+		u1.setUsername("list");
+		u1.setPassword("abc123");
+		
+		users.add(u1);
+		
+		
+		return users;
 		
 	}
 	
